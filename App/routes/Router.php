@@ -1,22 +1,26 @@
 <?php
-    class Router
+include_once './Controllers/ProductController.php';
+
+class Router
+{
+    private $route;
+    private $productController;
+    public function __construct($url)
     {
-        private $route;
+        $this->route = $url;
+        $this->productController = new ProductController();
+    }
 
-        public function __construct($url) {
-            $this->route = $url;
-        }
+    public function switchRoute()
+    {
+        switch ($this->route) {
+            case '/':
+                $this->productController->index();
+                break;
 
-        public function switchRoute(){
-            switch ($this->route) {
-                case '/':
-                    echo "Listagem de produtos";
-                    break;
-                
-                default:
-                    echo "rota não encontrada";
-                    break;
-            }
+            default:
+                echo "rota não encontrada";
+                break;
         }
     }
-    
+}
