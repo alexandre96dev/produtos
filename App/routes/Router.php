@@ -17,7 +17,12 @@ class Router
             case '/':
                 $this->productController->index();
                 break;
-
+            case '/products/save':
+                $this->productController->create();
+                break;
+            case '/products/delete':
+                $this->productController->delete();
+                break;
             default:
                 echo "rota não encontrada";
                 break;
