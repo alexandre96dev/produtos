@@ -16,21 +16,22 @@ class ProductController
     }
     public function create()
     {
-        // $product = new Product();
-        // $product->setDescription($_POST['createDescription']);
-        // $product->setSellingPrice($_POST['createSellingPrice']);
-        // $product->setStock($_POST['createStock']);
-        // $this->repository->create($product);
-        $arr = [];
+        $product = new Product();
+        $product->setDescription($_POST['createDescription']);
+        $product->setSellingPrice($_POST['createSellingPrice']);
+        $product->setStock($_POST['createStock']);
+        $this->repository->create($product);
+        
+        $arrayImages = [];
 
         foreach ($_FILES['imagem']['tmp_name'] as $imagesBinary) {
             $imageCode = file_get_contents($imagesBinary);
-
             $image_base64 = base64_encode($imageCode);
-
-            // Exiba a imagem em base64
-            echo '<img src="data:image/jpeg;base64,' . $image_base64 . '" alt="Imagem em base64">';
+            $arrayImages[] = $image_base64;
+            // echo '<img src="data:image/jpeg;base64,' . $image_base64 . '" alt="Imagem em base64">';
         }
+        
+        $product->setImages($arrayImages);
         // header("Location: /");
     }
     public function delete()
