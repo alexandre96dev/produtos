@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Set-2023 às 18:40
+-- Tempo de geração: 01-Set-2023 às 21:14
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -24,14 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `imagem_produtos`
+--
+
+CREATE TABLE `imagem_produtos` (
+  `id` int(11) NOT NULL,
+  `produto_id` int(11) NOT NULL,
+  `imagem` text NOT NULL,
+  `nome_imagem` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `pedidos`
 --
 
 CREATE TABLE `pedidos` (
+  `id` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `produto_id` int(11) NOT NULL,
   `ativo` varchar(1) NOT NULL DEFAULT 'A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `quantidade`, `produto_id`, `ativo`) VALUES
+(1, 1, 1, 'A');
 
 -- --------------------------------------------------------
 
@@ -59,6 +80,18 @@ INSERT INTO `produtos` (`id`, `descricao`, `valor_venda`, `estoque`, `ativo`) VA
 --
 
 --
+-- Índices para tabela `imagem_produtos`
+--
+ALTER TABLE `imagem_produtos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
@@ -67,6 +100,18 @@ ALTER TABLE `produtos`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `imagem_produtos`
+--
+ALTER TABLE `imagem_produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
