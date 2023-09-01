@@ -3,6 +3,7 @@
         private $description;
         private $sellingPrice;
         private $stock;
+        private array $images;
 
         public function getDescription() {
             return $this->description;
@@ -26,5 +27,13 @@
         
         public function setStock($stock) {
             $this->stock = $stock;
+        }
+
+        public function getImages() {
+            return $this->images;
+        }
+        
+        public function setImages($images = []) {
+            $this->images = $images;
         }
     }

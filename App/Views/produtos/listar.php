@@ -7,6 +7,7 @@
     <title>Produtos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
-                    <tbody <?php foreach ($products as $item) : ?> <tr>
+                    <tbody> <?php foreach ($products as $item) : ?> <tr>
                         <td>
                             <?= $item->id ?>
                         </td>
@@ -64,7 +65,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/products/save" method="post">
+                    <form action="/products/save" enctype="multipart/form-data"  method="post">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Descrição</label>
                             <input type="text" class="form-control" id="createDescription" name="createDescription" placeholder="Descrição teste">
@@ -77,6 +78,10 @@
                             <label for="exampleFormControlInput1" class="form-label">Estoque</label>
                             <input type="text" class="form-control" id="createStock" name="createStock" placeholder="0">
                         </div>
+                        <button type="button" class="btn btn-secondary" id="add-images">Adicionar Imagens</button>
+                        <div class="mb-3" id="imagens">
+                            <input class="form-control" type="file" name="imagem[]">
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -87,6 +92,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function (){
+            $('#add-images').click(function (){
+                let newImage = $('#imagens input:first').clone();
+
+                newImage.val('');
+
+                $('#imagens').append(newImage);
+            })
+        })
+    </script>
 </body>
 
 </html>
